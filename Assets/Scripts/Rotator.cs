@@ -9,7 +9,6 @@ public class Rotator : MonoBehaviour
         _transform = GetComponent<Transform>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         _transform.Rotate(45 * Time.deltaTime, 0, 0);
