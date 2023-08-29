@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     #region Show in Inspector
 
     public float speed;
+    public int health = 5;
 
     #endregion
 
@@ -14,7 +15,6 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
 		_rigidbody = GetComponent<Rigidbody>();
-        score = 0;
     }
 
 
@@ -35,6 +35,12 @@ public class PlayerController : MonoBehaviour
             score++;
             Debug.Log("Score: " + score);
             Destroy(other.gameObject);
+        }
+
+        if (other.tag == "Trap")
+        {
+            health--;
+            Debug.Log("Health: " + health);
         }
     }
 
@@ -68,7 +74,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody _rigidbody;
     private Vector3 _movementDirection;
-    private int score;
+    private int score = 0;
 
     #endregion
 }
