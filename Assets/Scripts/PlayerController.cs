@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
 		_rigidbody = GetComponent<Rigidbody>();
+        score = 0;
     }
 
 
@@ -25,6 +26,16 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         MoveWithVelocity();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Pickup")
+        {
+            score++;
+            Debug.Log("Score: " + score);
+            Destroy(other.gameObject);
+        }
     }
 
     #region Private methods
@@ -57,6 +68,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody _rigidbody;
     private Vector3 _movementDirection;
+    private int score;
 
     #endregion
 }
